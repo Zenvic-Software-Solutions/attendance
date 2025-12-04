@@ -1,31 +1,32 @@
 import {
-  makeGetRequest,
-  makePostRequest,
-  makePatchRequest,
-  makeDeleteRequest,
-  makeCustomRequest,
-  makeFromRequest,
-  makePutRequest,
+    makeGetRequest,
+    makePostRequest,
+    makePatchRequest,
+    makeDeleteRequest,
+    makeCustomRequest,
+    makeFromRequest,
+    makePutRequest,
 } from "./methods/makeRequest";
 
 // // authApi
 export const login = (data) => makePostRequest("access/admin/login/", data);
 //User
-export const getUserList = ( page = 1, search ) => makeGetRequest(`access/user/list/?page=${page}&search=${search}`);
-export const getUserName = ( page = 1 ) => makeGetRequest(`access/user/list/?page=${page}`);
+export const getUserList = (page = 1, search) => makeGetRequest(`access/user/list/?page=${page}&search=${search}`);
+export const getUserName = (page = 1) => makeGetRequest(`access/user/list/?page=${page}`);
+export const getUserFilterName = () => makeGetRequest(`cms/user/meta/`);
 
 // export const getUserList = (params) =>
 //   makeGetRequest("access/user/list/", params);
 export const getUserDetails = (uuid) => makeGetRequest(`access/user/retrieve/${uuid}/`);
 
 //Task
-export const getTaskList = (uuid, date, category) => makeGetRequest(`cms/user/task/list/${uuid}/?punch_date=${date}&category=${category}`);
+export const getTaskList = (uuid, startDate, endDate, category, page) => makeGetRequest(`cms/task/list/?created_at__gte=${startDate}&created_at__lte=${endDate}&category=${category}&user=${uuid}&page=${page}`);
 // export const getTaskList = (uuid, params = {}) => makeGetRequest(`cms/user/task/list/${uuid}/`, params);
 export const getTaskDetails = (uuid) => makeGetRequest(`cms/user/task/retrieve/${uuid}/`);
 
 //Update User Status
 export const updateUserStatus = (uuid, payload) =>
-  makePatchRequest(`access/user/cud/${uuid}/`, payload);
+    makePatchRequest(`access/user/cud/${uuid}/`, payload);
 
 
 
@@ -75,4 +76,3 @@ export const getAttendanceDashboard = () => makeGetRequest("cms/dashboard/");
 //   makePutRequest(`common/travels/${id}/`, data);
 // export const getTransactionById = (id) =>
 //   makeGetRequest(`common/bookings/${id}/transactions/`);
-
