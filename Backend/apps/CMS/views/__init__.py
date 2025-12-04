@@ -8,7 +8,7 @@ from .dashboard import (
     MonthlyPresentAPIView
 )
 
-from .task import TaskCUDAPIView,CategoryAPIView,TaskCMSAPIView
+from .task import CategoryAPIView,TaskListAPIView,TaskCUDAPIView
 from .leave import LeaveRequestlistAPIView,LeaveRequestCUDAPIView,LeaveStatusAPIView
 
 

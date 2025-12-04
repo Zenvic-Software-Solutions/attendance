@@ -31,5 +31,4 @@ class LeaveRequestWriteSerializer(WriteOnlySerializer):
             "to_date",
             "reason",
             "duration",
-            "leave_request",
         ]

@@ -2,7 +2,7 @@ from .checkin import CheckInReadSerializer,PunchReadSerializer
 from .task import (
     CategoryReadSerializer,
     CategoryWriteSerializer,
-    TaskListReadSerializer,
+    TaskReadSerializer,
     TaskWriteSerializer
 )
 

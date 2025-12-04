@@ -3,7 +3,8 @@ from apps.CMS.models import Category,Task
 from apps.CMS.serializers import (
     CategoryReadSerializer,
     CategoryWriteSerializer,
-    TaskListReadSerializer,TaskWriteSerializer
+    TaskReadSerializer,
+    TaskWriteSerializer
 )
 from rest_framework.permissions import IsAuthenticated,AllowAny
 from rest_framework.viewsets import ModelViewSet
@@ -20,10 +21,9 @@ class CategoryAPIView(ModelViewSet):
             return CategoryReadSerializer
         return CategoryWriteSerializer
 
-class TaskCMSAPIView(ListAPIViewSet):
-    queryset = Task.objects.all()
-    serializer_class = TaskListReadSerializer
-
+class TaskListAPIView(ListAPIViewSet):
+    queryset =Task.objects.all()
+    serializer_class = TaskReadSerializer
 
 
 class TaskCUDAPIView(CUDAPIViewSet):

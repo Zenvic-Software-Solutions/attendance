@@ -11,7 +11,7 @@ from apps.CMS.views import (
     UserAttendanceListAPIView,
     DashboardAPIView,
     UserPunchHistory,
-    CategoryAPIView,TaskCMSAPIView,TaskCUDAPIView,
+    CategoryAPIView,TaskListAPIView,TaskCUDAPIView,
     LeaveRequestlistAPIView,
     LeaveRequestCUDAPIView,
     CategoryListAPIView,
@@ -44,7 +44,7 @@ router.register("category",CategoryCreateAPIView,basename="category")
 # router.register("category/list",CategoryListAPIView,basename="category-list")
 router.register("user/meta",UserMetaAPIView,basename="meta")
 router.register("task",TaskCUDAPIView,basename="task")
-router.register("task/list",TaskCMSAPIView,basename="task-list")
+router.register("task/list",TaskListAPIView,basename="task-list")
 router.register("leave/request",LeaveRequestCUDAPIView,basename="leave-request")
 router.register("leave/list",LeaveRequestlistAPIView,basename="leave-list")
 router.register("daily/absent",DailyAbsentAPIView,basename="daily/absent")

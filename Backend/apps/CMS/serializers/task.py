@@ -16,3 +16,31 @@ class CategoryWriteSerializer(serializers.ModelSerializer):
         fields = ["identity"]
 
 
+class TaskReadSerializer(ReadOnlySerializer):
+    category_details = read_serializer(Category,meta_fields=["id",
+                                                             "uuid","identity"])(source="category")
+    user_details = read_serializer(User,meta_fields=["id","uuid","employee_id","identity"])(source="user")
+    class Meta(ReadOnlySerializer.Meta):
+        model = Task
+        fields = [
+            "id",
+            "uuid",
+            "task_name",
+            "user_details",
+            "category_details",
+            "created_at",
+            "status"
+        ]
+
+class TaskWriteSerializer(WriteOnlySerializer):
+    class Meta(WriteOnlySerializer.Meta):
+        model = Task
+        fields = [
+            "task_name",
+            "created_at",
+            "status",
+            "description",
+            "hours"
+        ]
+
+
