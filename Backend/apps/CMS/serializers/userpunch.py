@@ -8,6 +8,7 @@ class UserIdentitySerializer(serializers.ModelSerializer):
         fields = [
             "id",
             "uuid",
+            "employee_id",
             "identity"
         ]
 

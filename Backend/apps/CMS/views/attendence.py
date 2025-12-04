@@ -1,12 +1,13 @@
 
 from apps.CMS.serializers import UserPunchListSerializer,UserIdentitySerializer
 from rest_framework.generics import ListAPIView
+from apps.BASE.views import ListAPIViewSet
 from apps.CMS.models import Check
 from apps.ACCESS.models import User
 from apps.BASE.pagination import BaseViewMixin
 from rest_framework.response import Response
 
-class UserMetaAPIView(ListAPIView):
+class UserMetaAPIView(ListAPIViewSet):
     queryset = User.objects.all()
     serializer_class = UserIdentitySerializer
     

@@ -1,7 +1,7 @@
 
 from django.utils.timezone import now
-
-from apps.BASE.views import AppAPIView
+from apps.CMS.serializers import PunchReadSerializer
+from apps.BASE.views import AppAPIView,ListAPIViewSet
 from apps.CMS.models import Check
 
 from math import radians, sin, cos, sqrt, atan2
@@ -141,3 +141,14 @@ class UserPunchHistory(AppAPIView):
             for punch in punches
         ]
         return self.send_response({"punch_data": punch_data})
+    
+
+
+class PunchListAPIView(ListAPIViewSet):
+    filterset_fields = {
+        "user":["exact"],
+        "punch_date":["gte","lte"]
+    }
+    queryset = Check.objects.all()
+    serializer_class = PunchReadSerializer
+

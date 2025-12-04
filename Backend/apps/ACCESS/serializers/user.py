@@ -101,11 +101,16 @@ class UserWriteOnlySerializer(WriteOnlySerializer):
     class Meta(WriteOnlySerializer.Meta):
         model = User
         fields = [
-            "employee_id",
             "identity",
+            "email",
             "phone_number",
-            "is_active",
-            "mode"
+            "confirm_password",
+            "dob",
+            "address",
+            "city",
+            "gender",
+            "domain",
+            "mode",
         ]
 
 

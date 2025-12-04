@@ -37,3 +37,16 @@ class User(BaseModel, AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return f"{self.email}"
+    
+    
+    def save(self, *args, **kwargs):
+        if not self.employee_id:
+            last_employee = User.objects.all().order_by("id").last()
+            if last_employee:
+                last_employee_id = last_employee.employee_id
+                employee_number = int(last_employee_id.split("ZEN")[-1]) + 1
+                self.employee_id = f"ZEN{employee_number:04d}"
+            else:
+                self.employee_id = "ZEN0001"
+
+        super(User, self).save(*args, **kwargs)

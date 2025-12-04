@@ -1,38 +1,28 @@
 from apps.CMS.models import LeaveRequest
 from apps.ACCESS.models import User
 from rest_framework import serializers 
+from apps.BASE.serializers import ReadOnlySerializer,WriteOnlySerializer,read_serializer
 
 
 
-class LeaveRequestReadSerializer(serializers.ModelSerializer):
-    user = serializers.CharField(source="user.identity",read_only=True)
-    class Meta:
+class LeaveRequestReadSerializer(ReadOnlySerializer):
+    user_details = read_serializer(User,meta_fields=["id","uuid","employee_id","identity"])(source="user")
+    class Meta(ReadOnlySerializer.Meta):
         model = LeaveRequest
         fields=[
             "id",
             "uuid",
-            "user",
-            "leave_type",
-            "from_date",
-            "to_date",
-            "duration"
-        ]
-
-class LeaveRequestDetailSerializer(serializers.ModelSerializer):
-    user = serializers.CharField(source="user.identity",read_only=True)
-    class Meta:
-        model = LeaveRequest
-        fields=[
-            "id",
-            "uuid",
-            "user",
+            "user_details",
             "leave_type",
             "from_date",
             "to_date",
             "duration",
-            "reason",
+            "created_at",
+            "leave_request",
         ]
-class LeaveRequestWriteSerializer(serializers.ModelSerializer):
+
+
+class LeaveRequestWriteSerializer(WriteOnlySerializer):
     class Meta:
         model = LeaveRequest
         fields=[
@@ -40,5 +30,6 @@ class LeaveRequestWriteSerializer(serializers.ModelSerializer):
             "from_date",
             "to_date",
             "reason",
-            "duration"
+            "duration",
+            "leave_request",
         ]

@@ -11,8 +11,9 @@ from apps.CMS.views import (
     UserAttendanceListAPIView,
     DashboardAPIView,
     UserPunchHistory,
-    CategoryAPIView,TaskAPIView,
-    LeaveRequestAPIView,
+    CategoryAPIView,TaskCMSAPIView,TaskCUDAPIView,
+    LeaveRequestlistAPIView,
+    LeaveRequestCUDAPIView,
     CategoryListAPIView,
     UserTaskRetrieveAPIView,
     UserLeaveDetailAPIView,
@@ -25,7 +26,9 @@ from apps.CMS.views import (
     DailyAbsentAPIView,
     DailyPresentAPIView,
     MonthlyAbsentAPIView,
-    MonthlyPresentAPIView
+    MonthlyPresentAPIView,
+    LeaveStatusAPIView,
+    PunchListAPIView,
     
     
 )
@@ -39,12 +42,16 @@ router = SimpleRouter()
 router.register("check/list",CheckListAPIView,basename="check-list")
 router.register("category",CategoryCreateAPIView,basename="category")
 # router.register("category/list",CategoryListAPIView,basename="category-list")
-router.register("task",TaskAPIView,basename="task")
-router.register("leave/request",LeaveRequestAPIView,basename="leave-request")
+router.register("user/meta",UserMetaAPIView,basename="meta")
+router.register("task",TaskCUDAPIView,basename="task")
+router.register("task/list",TaskCMSAPIView,basename="task-list")
+router.register("leave/request",LeaveRequestCUDAPIView,basename="leave-request")
+router.register("leave/list",LeaveRequestlistAPIView,basename="leave-list")
 router.register("daily/absent",DailyAbsentAPIView,basename="daily/absent")
 router.register("daily/present",DailyPresentAPIView,basename="daily/present")
 router.register("monthly/absent",MonthlyAbsentAPIView,basename="monthly/absent")
 router.register("monthly/present",MonthlyPresentAPIView,basename="monthly/present")
+router.register("attendence/list",PunchListAPIView,basename="punch-list")
 urlpatterns = [
     path("check/",CheckInOutAPI.as_view()),
     path("check/present/", PresentListAPIView.as_view({'get': 'list'}), name="present-users"),
@@ -59,9 +66,8 @@ urlpatterns = [
     path("user/task/retrieve/<uuid>/",UserTaskRetrieveAPIView.as_view()),
     path("user/leave/<uuid>/",UserLeaveListAPIView.as_view()),
     path("user/leave/retrieve/<uuid>/",UserLeaveDetailAPIView.as_view()),
-    path("attendence/list/",AttendencealllistAPIView.as_view()),
-    path("user/meta/",UserMetaAPIView.as_view()),
-    path("category/list/",CategoryListAPIView.as_view())
+    path("category/list/",CategoryListAPIView.as_view()),
+    path("leave/status/",LeaveStatusAPIView.as_view()),
   
    
 ] + router.urls

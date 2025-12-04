@@ -160,11 +160,12 @@ class UserDetailEditAPIView(AppAPIView):
         return self.send_error_response(serializer.errors)
 
 class UserListAppAPIView(BaseViewMixin,ListAPIViewSet):
-    search_fields = ["phone_number","email","identity","gender","domain"]
+    search_fields = ["employee_id","phone_number","email","identity","gender","domain"]
     queryset = User.objects.all()
     serializer_class= UserListReadOnlySerializer
 
     all_table_columns = {
+        "Employee ID":"employee_id",
         "identity":"Name",
         "phone_number":"Phone Number",
         "is_active" :"Active",

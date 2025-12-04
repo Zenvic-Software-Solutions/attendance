@@ -5,7 +5,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters
 
 class AppPagination(PageNumberPagination):
-    page_size = 7
+    page_size = 10
     page_size_query_param = "page-size"
     max_page_size = 100
 

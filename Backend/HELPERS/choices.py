@@ -11,6 +11,11 @@ LEAVE_STATUS = [
     ("Absent", "Absent"),
     ("Present", "Present"),
 ]
+LEAVE_REQUEST = [
+    ("Approval", "Approval"),
+    ("Rejected", "Rejected"),
+    ("Pending", "Pending"),
+]
 
 DOMAIN = [
     ("Backend Developer", "Backend Developer"),
