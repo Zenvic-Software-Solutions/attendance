@@ -4,6 +4,7 @@ import ProtectedRoute from "./ProtectedRoute";
 
 import MainLayout from "@/layouts/MainLayout";
 import { Dashboard, Login, UserList, UserDetail, Task, Attendance, WorkCategory, TaskDetail } from "@/pages";
+import UserLeaveList from "@/pages/leave";
 
 const MainRouter = createBrowserRouter([
   {
@@ -53,6 +54,10 @@ const MainRouter = createBrowserRouter([
       {
         path: "work-category",
         element: <WorkCategory />
+      },
+      {
+        path: "leave",
+        element: <UserLeaveList/>
       },
 
   
