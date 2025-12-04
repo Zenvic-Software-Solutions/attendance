@@ -1,0 +1,7 @@
+from .customer import CentreCUDAPIView,CentreListAPIView,CustomerCUDAPIView,CustomerListAPIView,CustomerRetrieveAPIView,PhoneAPIVIEW,CustomerLoanAPIVIew,NomineeLoanAPIVIew
+from .loan import LoanCUDAPIView,LoanListAPIView,LoanViewAPI
+from .dashboard import Dashboard
+from .payment import LoanNextDueListAPIView,PaymentListAPIView,PaymentCreateAPIView,CollectionAPIView
+from .reports import ReportsAPIView,LoanReportExportAPIView,PaymentReportExportAPIView,TodayPaymentReportExportAPIView,PaymentReportAPIView
+from .bulkupload import LoanBulkUploadAPIView,LoanBulkDownloadSampleAPIView
+from .delete import DeleteAPIView
