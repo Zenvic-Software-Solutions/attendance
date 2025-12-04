@@ -1,6 +1,3 @@
-from .customer import Centre,Customer,ProofDocument
-from .loan import Loan,LoanBill
-from .payment import Payment
-
-
-
+from .checkin import Check
+from .task import Task,Category
+from .leave import LeaveRequest
