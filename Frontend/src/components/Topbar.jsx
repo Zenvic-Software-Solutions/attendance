@@ -29,6 +29,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import LogoutModal from "./LogoutModal";
 import toast from "react-hot-toast";
 import APP_CONSTANTS from "@/config/AppConstants";
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
 const drawerWidth = 240;
 const closedDrawerWidth = 60;
@@ -84,6 +85,7 @@ const drawerItems = [
     { text: "Task", icon: <AssignmentIcon />, path: "/task" },
     { text: "Attendance", icon: <AccessTimeIcon />, path: "/attendance" },
     { text: "Work Category", icon: <CategoryIcon />, path: "/work-category" },
+    {text: "Leave",icon: <ExitToAppIcon/>, path:"/exittoapp"}
 ];
 
 
