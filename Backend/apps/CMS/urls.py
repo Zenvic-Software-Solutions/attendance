@@ -44,7 +44,7 @@ router.register("category",CategoryCreateAPIView,basename="category")
 # router.register("category/list",CategoryListAPIView,basename="category-list")
 router.register("user/meta",UserMetaAPIView,basename="meta")
 router.register("task",TaskCUDAPIView,basename="task")
-router.register("task/list",TaskListAPIView,basename="task-list")
+# router.register("task/list",TaskListAPIView,basename="task-list")
 router.register("leave/request",LeaveRequestCUDAPIView,basename="leave-request")
 router.register("leave/list",LeaveRequestlistAPIView,basename="leave-list")
 router.register("daily/absent",DailyAbsentAPIView,basename="daily/absent")
@@ -67,6 +67,7 @@ urlpatterns = [
     path("user/leave/<uuid>/",UserLeaveListAPIView.as_view()),
     path("user/leave/retrieve/<uuid>/",UserLeaveDetailAPIView.as_view()),
     path("category/list/",CategoryListAPIView.as_view()),
+    path("task/list/",TaskListAPIView.as_view()),
     path("leave/status/",LeaveStatusAPIView.as_view()),
   
    
