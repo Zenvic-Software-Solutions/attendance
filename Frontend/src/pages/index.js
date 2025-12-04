@@ -6,3 +6,5 @@ export { default as Task } from "./Task"
 export { default as TaskDetail } from "./TaskDetail"
 export { default as Attendance } from "./Attendance"
 export { default as WorkCategory } from "./workcategory"
+export{default as Leave}from "./leave"
+
