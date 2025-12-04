@@ -1,0 +1,8 @@
+export { default as Login } from "./Login/login"
+export { default as Dashboard } from "./Dashboard"
+export { default as UserList } from "./UserList"
+export { default as UserDetail } from "./UserDetail/"
+export { default as Task } from "./Task"
+export { default as TaskDetail } from "./TaskDetail"
+export { default as Attendance } from "./Attendance"
+export { default as WorkCategory } from "./workcategory"
