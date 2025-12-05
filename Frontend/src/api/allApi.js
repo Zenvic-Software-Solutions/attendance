@@ -37,6 +37,8 @@ export const getAttendanceDetails = (uuid, date) => makeGetRequest(`cms/user/pun
 export const addWorkCategory = (data) => makePostRequest("cms/category/", data);
 export const getWorkCategory = (page = 1, search) => makeGetRequest(`cms/category/list/?page=${page}&search=${search}`);
 export const getCategoryName = (page = 1) => makeGetRequest(`cms/category/list/?page=${page}`);
+// leave
+export const getUserLeaveList=()=>makeGetRequest(`cms/leave/list/user=${id}`)
 
 
 // export const getWorkCategory = (params) =>

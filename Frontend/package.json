@@ -23,7 +23,8 @@
         "react-dom": "^19.1.1",
         "react-hot-toast": "^2.6.0",
         "react-router-dom": "^7.9.4",
-        "rsuite": "^6.0.0"
+        "rsuite": "^6.0.0",
+        "uuid": "^13.0.0"
     },
     "devDependencies": {
         "@eslint/js": "^9.36.0",
