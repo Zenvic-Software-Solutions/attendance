@@ -20,25 +20,27 @@ import PeopleIcon from "@mui/icons-material/People";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import CategoryIcon from "@mui/icons-material/Category";
+import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import { useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
   const { open, setOpen, setHovered, isTablet, currentDrawerWidth, hovered } =
     useContext(MyContext);
   const theme = useTheme();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-    const handleDrawerClose = () => {
+  const handleDrawerClose = () => {
     setOpen(false);
   };
 
   const drawerItems = [
-  { text: "Dashboard", icon: <DashboardIcon />, path: "/dashboard" },
-  { text: "User", icon: <PeopleIcon />, path: "/user" },
-  { text: "Task", icon: <AssignmentIcon />, path: "/task" },
-  { text: "Attendance", icon: <AccessTimeIcon />, path: "/attendance" },
-  { text: "Work Category", icon: <CategoryIcon />, path: "/work-category" },
-];
+    { text: "Dashboard", icon: <DashboardIcon />, path: "/dashboard" },
+    { text: "User", icon: <PeopleIcon />, path: "/user" },
+    { text: "Task", icon: <AssignmentIcon />, path: "/task" },
+    { text: "Attendance", icon: <AccessTimeIcon />, path: "/attendance" },
+    { text: "Work Category", icon: <CategoryIcon />, path: "/work-category" },
+    { text: "Leave", icon: <ExitToAppIcon />, path: "/leave" },
+  ];
   return (
     <Drawer
       variant={isTablet ? "temporary" : "permanent"}
