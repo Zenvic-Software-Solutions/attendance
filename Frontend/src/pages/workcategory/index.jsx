@@ -130,12 +130,12 @@ export default function WorkCategory() {
                 //  Add new via API
                 const payload = { identity: selectedTask.category };
                 const res = await addWorkCategory(payload);
-                if (res) {
-                    toast.success("Category added successfully!");
-                    await fetchCategories(); //  Refetch data after add
-                } else {
-                    toast.error("Failed to add category");
-                }
+                toast.success("Category added successfully!");
+                await fetchCategories(); //  Refetch data after add
+                // if (res) {
+                // } else {
+                //     toast.error("Failed to add category");
+                // }
             }
 
             setOpen(false);

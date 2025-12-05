@@ -7,6 +7,7 @@ import {
   Typography,
   CircularProgress,
   Button,
+  Chip,
 } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { getTaskDetails } from "@/api/allApi"; // your API call
@@ -48,11 +49,7 @@ export default function TaskDetail() {
     return (
       <Box sx={{ textAlign: "center", mt: 5 }}>
         <Typography variant="h6">Task not found.</Typography>
-        <Button
-          variant="contained"
-          sx={{ mt: 2 }}
-          onClick={() => navigate(-1)}
-        >
+        <Button variant="contained" sx={{ mt: 2 }} onClick={() => navigate(-1)}>
           Go Back
         </Button>
       </Box>
@@ -70,7 +67,9 @@ export default function TaskDetail() {
       </Button>
 
       <Card>
-        <CardContent sx={{ display: "flex", flexDirection: "column", gap: 1.5 }}>
+        <CardContent
+          sx={{ display: "flex", flexDirection: "column", gap: 1.5 }}
+        >
           <Typography variant="h6" sx={{ fontWeight: "bold" }}>
             Task Details
           </Typography>
@@ -89,6 +88,19 @@ export default function TaskDetail() {
           </Typography>
           <Typography>
             <strong>Status:</strong> {task.status || "-"}
+            <Chip
+              label={task.status || "-"}
+              color={
+                task.status === "Completed"
+                  ? "success"
+                  : task.status === "Pending"
+                  ? "warning"
+                  :task.status === "Blocked"
+                  ? "error"
+                  : "warning"
+              }
+              size="small"
+            />
           </Typography>
           <Typography>
             <strong>Description:</strong> {task.description || "-"}

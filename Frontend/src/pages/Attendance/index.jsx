@@ -55,23 +55,23 @@ export default function AttendanceList() {
         let allAttendance = [];
 
         // Case 1 — ALL USERS
-        if (selectedUser === "") {
-          for (const user of users) {
-            const res = await getAttendanceDetails(user.uuid, selectedDate);
-            const list = res?.results || [];
+        // if (selectedUser === "") {
+        //   for (const user of users) {
+        //     const res = await getAttendanceDetails(user.uuid, selectedDate);
+        //     const list = res?.results || [];
 
-            // Add username to each attendance entry
-            const enriched = list.map((item) => ({
-              ...item,
-              userName: user.identity || user.email || "Unnamed User",
-            }));
+        //     // Add username to each attendance entry
+        //     const enriched = list.map((item) => ({
+        //       ...item,
+        //       userName: user.identity || user.email || "Unnamed User",
+        //     }));
 
-            allAttendance = [...allAttendance, ...enriched];
-          }
+        //     allAttendance = [...allAttendance, ...enriched];
+        //   }
 
-          setAttendance(allAttendance);
-          return;
-        }
+        //   setAttendance(allAttendance);
+        //   return;
+        // }
 
         // Case 2 — SPECIFIC USER
         const response = await getAttendanceDetails(selectedUser, selectedDate);
