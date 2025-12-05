@@ -38,12 +38,13 @@ export default function TaskList() {
   const [totalPages, setTotalPages] = useState(1);
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
-
+  const [status, setStatus] = useState("");
   const [selectedDate, setSelectedDate] = useState(() => {
     const today = new Date();
     return today.toISOString().split("T")[0];
   });
 
+  const tasksPerPage = 10;
   const navigate = useNavigate();
 
   // ---------------- FETCH USERS ----------------
@@ -118,10 +119,11 @@ export default function TaskList() {
           startDate,
           endDate,
           selectedCategory || "",
-          totalPages
+          currentPage,
+          status
         );
-        const total = res.count
-          ? Math.ceil(res.count / 10)
+        const total = response.count
+          ? Math.ceil(response.count / 10)
           : res.total_pages || 1;
 
         setTotalPages(total);
@@ -138,7 +140,7 @@ export default function TaskList() {
     if (users.length > 0) {
       fetchTasks();
     }
-  }, [selectedUser, startDate, endDate, selectedCategory, users]);
+  }, [selectedUser, startDate, endDate, selectedCategory, users, status]);
 
   // ---------------- VIEW TASK ----------------
   const handleView = (uuid) => {
@@ -151,7 +153,6 @@ export default function TaskList() {
 
   return (
     <Box sx={{ p: 3 }}>
-      {/* Top Section */}
       <Box
         sx={{
           display: "flex",
@@ -163,25 +164,33 @@ export default function TaskList() {
         <Typography variant="h6" sx={{ fontWeight: "bold" }}>
           Task List
         </Typography>
-
+      </Box>
+      {/* Top Section */}
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          mb: 2,
+        }}
+      >
         <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
           {/* CATEGORY FILTER */}
           <Autocomplete
             size="small"
             sx={{ minWidth: 180 }}
-            options={[{ identity: "All Categories" }, ...categories]}
+            options={[{ id: "", identity: "All Categories" }, ...categories]}
             getOptionLabel={(option) => option.identity}
+            isOptionEqualToValue={(option, value) => option.id === value.id}
+            clearOnEscape
             value={
-              categories.find((c) => c.identity === selectedCategory) || {
+              categories.find((c) => c.id === selectedCategory) || {
+                id: "",
                 identity: "All Categories",
               }
             }
             onChange={(e, newValue) => {
-              if (newValue.identity === "All Categories") {
-                setSelectedCategory("");
-              } else {
-                setSelectedCategory(newValue.identity);
-              }
+              setSelectedCategory(newValue?.id || "");
             }}
             renderInput={(params) => (
               <TextField
@@ -207,6 +216,23 @@ export default function TaskList() {
             setEndDate={setEndDate}
             startedDate={startDate}
           />
+
+          {/* STATUS FILTER */}
+          <FormControl size="small" sx={{ width: "200px" }}>
+            <InputLabel>Status</InputLabel>
+            <Select
+              label="Status"
+              value={status}
+              onChange={(e) => setStatus(e.target.value)}
+            >
+              <MenuItem value="">All Status</MenuItem>
+              <MenuItem value="Pending">Pending</MenuItem>
+              <MenuItem value="Blocked">Blocked</MenuItem>
+              {/* <MenuItem value="In_Progress">In Progress</MenuItem> */}
+              <MenuItem value="Completed">Completed</MenuItem>
+            </Select>
+          </FormControl>
+
           {/* USER FILTER */}
           <Autocomplete
             size="small"
@@ -256,6 +282,7 @@ export default function TaskList() {
           <TableHead>
             <TableRow>
               <TableCell sx={{ fontWeight: "bold" }}>S.No</TableCell>
+              <TableCell sx={{ fontWeight: "bold" }}>User Name</TableCell>
               <TableCell sx={{ fontWeight: "bold" }}>Category</TableCell>
               <TableCell sx={{ fontWeight: "bold" }}>Task Name</TableCell>
               <TableCell sx={{ fontWeight: "bold" }}>Hours</TableCell>
@@ -274,10 +301,25 @@ export default function TaskList() {
             ) : tasks.length > 0 ? (
               tasks.map((task, index) => (
                 <TableRow key={task.uuid}>
-                  <TableCell>{index + 1}</TableCell>
-                  <TableCell>{task.category || "-"}</TableCell>
+                  <TableCell>
+                    {" "}
+                    {(currentPage - 1) * tasksPerPage + index + 1}
+                  </TableCell>
+                  <TableCell>{task.user_details?.identity || "-"}</TableCell>
+                  <TableCell>
+                    {task.category_details?.identity || "-"}
+                  </TableCell>
                   <TableCell>{task.task_name || "-"}</TableCell>
-                  <TableCell>{task.hours || "-"}</TableCell>
+                  <TableCell>
+                    {task.created_at
+                      ? new Date(task.created_at).toLocaleTimeString([], {
+                          hour: "2-digit",
+                          minute: "2-digit",
+                          hour12: true,
+                        })
+                      : "-"}
+                  </TableCell>
+
                   <TableCell>
                     <Chip
                       label={task.status || "Pending"}
@@ -285,7 +327,11 @@ export default function TaskList() {
                         task.status === "Completed"
                           ? "success"
                           : task.status === "In Progress"
+                          ? "info"
+                          : task.status === "Pending"
                           ? "warning"
+                          : task.status === "Blocked"
+                          ? "error"
                           : "default"
                       }
                       size="small"

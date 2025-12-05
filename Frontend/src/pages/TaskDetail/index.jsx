@@ -87,17 +87,17 @@ export default function TaskDetail() {
             <strong>Hours:</strong> {task.hours || "-"}
           </Typography>
           <Typography>
-            <strong>Status:</strong> {task.status || "-"}
+            <strong>Status:</strong>
             <Chip
-              label={task.status || "-"}
+              label={task.status || "Pending"}
               color={
                 task.status === "Completed"
                   ? "success"
+                  : task.status === "In Progress"
+                  ? "info"
                   : task.status === "Pending"
                   ? "warning"
-                  :task.status === "Blocked"
-                  ? "error"
-                  : "warning"
+                  : "default"
               }
               size="small"
             />

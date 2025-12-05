@@ -20,7 +20,7 @@ export const getUserFilterName = () => makeGetRequest(`cms/user/meta/`);
 export const getUserDetails = (uuid) => makeGetRequest(`access/user/retrieve/${uuid}/`);
 
 //Task
-export const getTaskList = (uuid, startDate, endDate, category, page) => makeGetRequest(`cms/task/list/?created_at__gte=${startDate}&created_at__lte=${endDate}&category=${category}&user=${uuid}&page=${page}`);
+export const getTaskList = (uuid, startDate, endDate, category, page = 1, status) => makeGetRequest(`cms/task/list/?user=${uuid}&created_at__gte=${startDate}&created_at__lte=${endDate}&category=${category}&page=${page}&status=${status}`);
 // export const getTaskList = (uuid, params = {}) => makeGetRequest(`cms/user/task/list/${uuid}/`, params);
 export const getTaskDetails = (uuid) => makeGetRequest(`cms/user/task/retrieve/${uuid}/`);
 
