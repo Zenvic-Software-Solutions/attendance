@@ -20,7 +20,7 @@ import PeopleIcon from "@mui/icons-material/People";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import CategoryIcon from "@mui/icons-material/Category";
-import ExitToAppIcon from "@mui/icons-material/ExitToApp";
+import CalenderTodayIcon from "@mui/icons-material/CalendarToday"
 import { useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
@@ -39,7 +39,7 @@ const Sidebar = () => {
     { text: "Task", icon: <AssignmentIcon />, path: "/task" },
     { text: "Attendance", icon: <AccessTimeIcon />, path: "/attendance" },
     { text: "Work Category", icon: <CategoryIcon />, path: "/work-category" },
-    { text: "Leave", icon: <ExitToAppIcon />, path: "/leave" },
+    { text: "Leave", icon: <CalenderTodayIcon/>, path: "/leave" },
   ];
   return (
     <Drawer

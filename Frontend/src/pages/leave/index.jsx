@@ -104,7 +104,7 @@ const UserLeaveList = () => {
                 <TableCell>{row.leaveType}</TableCell>
                 <TableCell>{row.startDate}</TableCell>
                 <TableCell>{row.endDate}</TableCell>
-                <TableCell>{row.totalDays}</TableCell>
+                <TableCell sx={{ textAlign: "center"}}>{row.totalDays}</TableCell>
                 <TableCell>
                   <Chip
                     label={row.status}
@@ -119,6 +119,8 @@ const UserLeaveList = () => {
                 </TableCell>
                 <TableCell>
                   <IconButton
+                    color="primary"
+                      aria-label="edit user"
                     onClick={() => {
                       setSelectedUserForStatus(row);
                      
@@ -145,10 +147,10 @@ const UserLeaveList = () => {
             Update Status
           </DialogTitle>
 
-          <DialogContent>
-            <FormControl fullWidth>
+          <DialogContent  sx={{ px: 4, py: 2, display: "flex", flexDirection: "column", gap: 3 }}>
+            <FormControl fullWidth margin="dense">
               <InputLabel>Status</InputLabel>
-              <Select>
+              <Select label="Status">
                 <MenuItem value="Approved">Approved</MenuItem>
                 <MenuItem value="Rejected">Rejected</MenuItem>
               </Select>
