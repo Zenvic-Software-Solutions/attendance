@@ -159,7 +159,15 @@ const UserLeaveList = () => {
 
           <DialogActions>
             <Button onClick={() => setStatusModalOpen(false)}>Cancel</Button>
-            <Button>
+            <Button onClick={() => setStatusModalOpen(false)} sx={{
+  backgroundColor: "blue",
+  color: "white",
+  transition: "0.3s",
+  "&:hover": {
+    backgroundColor: "green",
+  },
+}}
+>
               Save
             </Button>
           </DialogActions>

@@ -18,6 +18,8 @@ import {
   TextField,
 } from "@mui/material";
 import { getAttendanceDetails, getUserList, getUserName } from "@/api/allApi";
+import DateRange from "@/components/DateRange";
+
 
 export default function AttendanceList() {
   const [users, setUsers] = useState([]);
@@ -112,14 +114,15 @@ export default function AttendanceList() {
 
         <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
           {/* Date Filter */}
-          <TextField
+          {/* <TextField
             label="Select Date"
             type="date"
             size="small"
             value={selectedDate}
             onChange={(e) => setSelectedDate(e.target.value)}
             InputLabelProps={{ shrink: true }}
-          />
+          /> */}
+          <DateRange />
           {/* Dropdown to select user */}
           <FormControl size="small" sx={{ minWidth: 220 }}>
             <InputLabel shrink>Select User</InputLabel>
@@ -155,7 +158,7 @@ export default function AttendanceList() {
               <TableCell sx={{ fontWeight: "bold" }}>Punch In</TableCell>
               <TableCell sx={{ fontWeight: "bold" }}>Punch Out</TableCell>
               <TableCell sx={{ fontWeight: "bold" }}>Punch Date</TableCell>
-              <TableCell sx={{ fontWeight: "bold" }}>Leave Status</TableCell>
+                <TableCell sx={{ fontWeight: "bold" }}>Total Hours</TableCell>
             </TableRow>
           </TableHead>
 
@@ -171,26 +174,12 @@ export default function AttendanceList() {
                 <TableRow key={item.uuid}>
                   <TableCell>{index + 1}</TableCell>
                   <TableCell>
-                    {users.find((u) => u.uuid === selectedUser)?.identity ||
-                      users.find((u) => u.uuid === selectedUser)?.email ||
-                      "-"}
+                    {item.user_details?.identity || "-"}
                   </TableCell>
                   <TableCell>{item.punch_in || "-"}</TableCell>
                   <TableCell>{item.punch_out || "-"}</TableCell>
                   <TableCell>{item.punch_date || "-"}</TableCell>
-                  <TableCell>
-                    <Chip
-                      label={item.leave_status || "Unknown"}
-                      color={
-                        item.leave_status === "Present"
-                          ? "success"
-                          : item.leave_status === "Absent"
-                          ? "error"
-                          : "warning"
-                      }
-                      size="small"
-                    />
-                  </TableCell>
+                  <TableCell>{item.duration || "-"}</TableCell>
                 </TableRow>
               ))
             ) : (

@@ -246,7 +246,7 @@ export default function WorkCategory() {
                     {editMode ? "Edit Category" : "Add Category"}
                 </DialogTitle>
                 <DialogContent
-                    sx={{ display: "flex", flexDirection: "column", gap: 2, mt: 1 }}
+                    sx={{ px: 4, py: 2, display: "flex", flexDirection: "column", gap: 3 }}
                 >
                     <TextField
                         label="Category"
@@ -258,6 +258,7 @@ export default function WorkCategory() {
                             })
                         }
                         fullWidth
+                        margin="dense"
                     />
                 </DialogContent>
 

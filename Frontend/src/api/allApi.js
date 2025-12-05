@@ -31,7 +31,7 @@ export const updateUserStatus = (uuid, payload) =>
 
 
 //Attendance
-export const getAttendanceDetails = (uuid, date) => makeGetRequest(`cms/user/punch/list/?punch_date=${date}&user=${uuid}`);
+export const getAttendanceDetails = (uuid, date) => makeGetRequest(`cms/attendence/list/`);
 
 // Work Category
 export const addWorkCategory = (data) => makePostRequest("cms/category/", data);
